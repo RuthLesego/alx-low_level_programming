@@ -1,4 +1,4 @@
-#include "main.h"
+#include"main.h"
 
 /**
  *  main - Entry point
@@ -7,8 +7,8 @@
  */
 
 int main(void)
-	
-{
+
+}
 	_putchar('H');
 	_putchar('o');
 	_putchar('l');
