@@ -2,7 +2,7 @@
 
 /**
  * main - Entry point
- *
+ * print_sign - function that prints the sign of a number
  * Return: Always 0 (success)
  */
 
