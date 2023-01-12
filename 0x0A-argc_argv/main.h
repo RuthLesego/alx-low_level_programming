@@ -2,6 +2,7 @@
 #define "main.h"
 #include <stdio.h>
 
-int _putchar(char c);/*prototype _putchar*/
+int _putchar(char c);
+int check_num(char *str);
 
 #endif
