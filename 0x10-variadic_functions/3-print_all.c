@@ -2,41 +2,79 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-void op_char(char)
+/**
+ * pr_int - print a integer type;
+ * @val: a va_list struct to process;
+ */
+ void pr_int(va_list val)
 {
-	printf("%d", va_arg(pseudo, int));
+	printf("%d", va_arg(val, int));
 }
 
-void op_float(float)
+/**
+ * pr_char - print a char type;
+ * @val: a va_list struct to process;
+ */
+void pr_char(va_list val)
 {
-	printf("%f", va_arg(pseudo, float));
+	printf("%c", va_arg(val, int));
 }
 
-void op_string(char *)
+/**
+ * pr_str - print a string type or (nil) if empty/NULL;
+ * @val: a va_list struct to process;
+ */
+void pr_str(va_list val)
 {
-	printf("%s", va_arg(pseudo, char *));
+	char *r;
+
+	r = va_arg(val, char *);
+	switch (!r)
+	{
+	case 0:
+		printf("%s", r);
+		break;
+	case 1:
+		printf("(nil)");
+		break;
+	}
 }
 
+/**
+ * print_all - print all argument that match with form.
+ * @format: type to print out.
+ * @....: arguments to print.
+ * Return: Nothing
+ */
 void print_all(const char * const format, ...)
 {
-	va_list pseudo;
-	va_start(pseudo, format);
-
-	op_t ops[] = {
-		{"c", op_char},
-		{"i", op_int},
-		{"f", op_float},
-		{"s", op_string},
+	int i, j;
+	va_list vls;
+	p_op ops[] = {
+		{"c", pr_char},
+		{"i", pr_int},
+		{"f", pr_float},
+		{"s", pr_str},
 		{NULL, NULL}
 	};
-	int i;
 
-
-	while()
-	while()
-		if()
-		if()
-		if()
-
-		printf("\n");
+	va_start(vls, format);
+	i = j = 0;
+	while (format && format[j])
+	{
+		i = 0;
+		while (ops[i].op)
+		{
+			if (ops[i].op[0] == format[j])
+			{
+				(ops[i].f)(vls);
+				if (format[j + 1])
+					printf(", ");
+			}
+			i++;
+		}
+		j++;
+	}
+	putchar(10);
+	va_end(vls);
 }
